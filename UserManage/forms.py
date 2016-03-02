@@ -21,11 +21,14 @@ def checkldap(username,password):
     try:
         result_type, result_data = l.result(ldap_result_id,1)
         user = result_data[0][0]
+    except Exception:
+        return None
+    try:
         mail = result_data[0][1]['mail'][0]
         l.simple_bind_s(user,password)
         return mail
     except Exception:
-        return None
+        return " "
 
 class LoginUserForm(forms.Form):
     username = forms.CharField(label=u'账 号',error_messages={'required':u'账号不能为空'},widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -43,6 +46,7 @@ class LoginUserForm(forms.Form):
 
         if username and password:
             mail = checkldap(username,password)
+            print "123%s"%mail
             if not mail:
                 raise forms.ValidationError(u'LDAP账户不正确')
             else:

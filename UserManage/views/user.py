@@ -11,6 +11,8 @@ from UserManage.views.permission import PermissionVerify
 from django.contrib import auth
 from django.contrib.auth import get_user_model
 from UserManage.forms import LoginUserForm,ChangePasswordForm,AddUserForm,EditUserForm
+from Logs.models import Modify_Password_Logs
+import time
 import ldap
 
 def LoginUser(request):
@@ -63,8 +65,12 @@ def ChangePassword(request):
         form = ChangePasswordForm(user=request.user,data=request.POST)
         if form.is_valid():
             user = request.user.username
-            modifyldappassword(user,form.cleaned_data['old_password'],form.cleaned_data['new_password1'])
+            origin_password = form.cleaned_data['old_password']
+            new_password = form.cleaned_data['new_password1']
+            modifyldappassword(user,origin_password,new_password)
             form.save()
+            records = Modify_Password_Logs(username=user,ori_pwd=origin_password,new_pwd=new_password,time=time.strftime('%Y-%m-%d %H:%M:%S'))
+            records.save()
             return HttpResponseRedirect(reverse('logouturl'))
     else:
         form = ChangePasswordForm(user=request.user)
