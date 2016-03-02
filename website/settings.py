@@ -64,7 +64,7 @@ else:
     MYSQL_PORT = '3306'
     MYSQL_USER = 'root'
     MYSQL_PASS = '123456'
-    MYSQL_DB = 'kedacmo'
+    MYSQL_DB = 'kedacmo_test'
 
 DATABASES = {
     'default': {
