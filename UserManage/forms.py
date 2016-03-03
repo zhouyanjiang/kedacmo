@@ -5,30 +5,12 @@ from django import forms
 from django.contrib import auth
 from django.contrib.auth import get_user_model
 from UserManage.models import User,RoleList,PermissionList
-import ldap
+from website.common.common import *
 import re
+import time
 from django.contrib.auth.hashers import make_password, check_password
+from Logs.models import Login_Logs
 
-def checkldap(username,password):
-    l = ldap.initialize("ldap://172.16.6.107")
-    l.protocol_version = ldap.VERSION3
-    l.simple_bind("cn=admin,dc=test,dc=com","123456")
-    searchScope  = ldap.SCOPE_SUBTREE
-    searchFiltername = "cn"
-    retrieveAttributes = None
-    searchFilter = '(' + searchFiltername + "=" + username +')'
-    ldap_result_id = l.search("dc=test,dc=com", searchScope, searchFilter, retrieveAttributes)
-    try:
-        result_type, result_data = l.result(ldap_result_id,1)
-        user = result_data[0][0]
-        l.simple_bind_s(user,password)
-    except Exception:
-        return None
-    try:
-        mail = result_data[0][1]['mail'][0]
-        return mail
-    except Exception:
-        return " "
 
 class LoginUserForm(forms.Form):
     username = forms.CharField(label=u'账 号',error_messages={'required':u'账号不能为空'},widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -52,20 +34,28 @@ class LoginUserForm(forms.Form):
                 try:
                     c = User(username=username, password=make_password(password,None, 'pbkdf2_sha256'),email=mail,is_active=1)
                     c.save()
-                except Exception:
-                    pass
+                except Exception,e:
+                    print e
                 try:
-                    u = Example.objects.get(username=username)
+                    u = User.objects.get(username=username)
                     u.password = make_password(password,None, 'pbkdf2_sha256')
                     u.save()
-                except Exception:
-                    pass
+                except Exception,e:
+                    print e
               
             self.user_cache = auth.authenticate(username=username,password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(u'账号密码不匹配')
             elif not self.user_cache.is_active:
                 raise forms.ValidationError(u'此账号已被禁用')
+        Login_Logs.objects.get_or_create(username=username)
+        record = Login_Logs.objects.get(username=username)
+        record.logintime = time.strftime('%Y-%m-%d %H:%M:%S')
+        try:
+            record.count = record.count + 1
+        except Exception:
+            record.count = 1
+        record.save()
         return self.cleaned_data
 
     def get_user(self):

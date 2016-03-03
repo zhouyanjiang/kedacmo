@@ -6,6 +6,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response,RequestContext
 from django.contrib.auth.decorators import login_required
 from website.common.CommonPaginator import SelfPaginator
+from website.common.common import *
 from UserManage.views.permission import PermissionVerify
 
 from django.contrib import auth
@@ -13,7 +14,6 @@ from django.contrib.auth import get_user_model
 from UserManage.forms import LoginUserForm,ChangePasswordForm,AddUserForm,EditUserForm
 from Logs.models import Modify_Password_Logs
 import time
-import ldap
 
 def LoginUser(request):
     '''用户登录view'''
@@ -46,19 +46,6 @@ def LogoutUser(request):
     auth.logout(request)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-def modifyldappassword(username,oldpass,newpass):
-    l = ldap.initialize("ldap://172.16.6.107")
-    l.protocol_version = ldap.VERSION3
-    l.simple_bind("cn=admin,dc=test,dc=com","123456")
-    searchScope  = ldap.SCOPE_SUBTREE
-    searchFiltername = "cn"
-    retrieveAttributes = None
-    searchFilter = '(' + searchFiltername + "=" + username +')'
-    ldap_result_id = l.search("dc=test,dc=com", searchScope, searchFilter, retrieveAttributes)
-    result_type, result_data = l.result(ldap_result_id,1)
-    user = result_data[0][0]
-    l.passwd(user,oldpass,newpass)   
-
 @login_required
 def ChangePassword(request):
     if request.method=='POST':
@@ -71,6 +58,9 @@ def ChangePassword(request):
             form.save()
             records = Modify_Password_Logs(username=user,ori_pwd=origin_password,new_pwd=new_password,time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()
+            subject = u'修改密码成功'
+            message = u'原始密码：%s <br> 新密码：%s'%(origin_password,new_password)
+            sendmail(gen_email(user),message,subject)
             return HttpResponseRedirect(reverse('logouturl'))
     else:
         form = ChangePasswordForm(user=request.user)
@@ -154,8 +144,7 @@ def DeleteUser(request,ID):
 @PermissionVerify()
 def ResetPassword(request,ID):
     user = get_user_model().objects.get(id = ID)
-
-    newpassword = get_user_model().objects.make_random_password(length=10,allowed_chars='abcdefghjklmnpqrstuvwxyABCDEFGHJKLMNPQRSTUVWXY3456789')
+    newpassword = get_user_model().objects.make_random_password(length=6,allowed_chars='abcdefghjklmnpqrstuvwxyABCDEFGHJKLMNPQRSTUVWXY3456789')
     print '====>ResetPassword:%s-->%s' %(user.username,newpassword)
     user.set_password(newpassword)
     user.save()

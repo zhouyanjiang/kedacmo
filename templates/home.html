@@ -6,7 +6,9 @@
 
 {% block rcontent %}
     <div class="starter-template">
-        <h1>科达CMO平台系统</h1>
+        <h1><b>科达配置管理平台</b></h1>
+        <br>
+        <h4><b>{{ request.user.username }}</b>：您好！ 这是您第 {{ count }} 次登陆，上次登陆时间: {{ lastlogintime }}</h4>
     </div>
 
 {% endblock %}
