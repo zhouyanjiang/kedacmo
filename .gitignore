@@ -1,1 +1,5 @@
 *.pyc
+UserManage/forms.pyc
+UserManage/views/user.pyc
+website/settings.pyc
+
