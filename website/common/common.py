@@ -140,19 +140,18 @@ def checkldap(username,password):
     searchFiltername = "cn"
     retrieveAttributes = None
     searchFilter = '(' + searchFiltername + "=" + username +')'
-    ldap_result_id = l.search(LDAP_BIND, searchScope, searchFilter, retrieveAttributes)
+    ldap_result_id = l.search("dc=test,dc=com", searchScope, searchFilter, retrieveAttributes)
     try:
         result_type, result_data = l.result(ldap_result_id,1)
         user = result_data[0][0]
-        l.simple_bind_s(user,password)
     except Exception:
         return None
     try:
         mail = result_data[0][1]['mail'][0]
+        l.simple_bind_s(user,password)
         return mail
     except Exception:
         return " "
-
 
 def gen_email(user):
     from UserManage.models import User

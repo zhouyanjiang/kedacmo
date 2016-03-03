@@ -28,7 +28,7 @@ class LoginUserForm(forms.Form):
 
         if username and password:
             mail = checkldap(username,password)
-            if not mail:
+            if mail == " ":
                 raise forms.ValidationError(u'LDAP账户不正确')
             else:
                 try:
