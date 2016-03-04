@@ -87,9 +87,9 @@ class ChangePasswordForm(forms.Form):
                 raise forms.ValidationError(u'两次密码输入不一致')
         if not re.match('^[0-9a-zA-Z]+$',password1):
             raise forms.ValidationError(u'密码只能包含大小写字母数字')
+        if self.cleaned_data["old_password"] == password1:
+            raise forms.ValidationError(u'新旧密码一样')
         return password2
-
-            
 
     def save(self, commit=True):
         self.user.set_password(self.cleaned_data['new_password1'])
