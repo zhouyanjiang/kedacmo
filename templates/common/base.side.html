@@ -15,7 +15,7 @@
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>工作台</a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse {% if '/' = request.path %} in {% endif %}">
+                            <div id="collapseOne" class="panel-collapse collapse {% if 'workspace' = request.path %} in {% endif %}">
                                 <div class="panel-body">
                                     <table class="table">
                                         <tbody>
@@ -29,46 +29,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>监控管理</a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse {% if '/' = request.path %} in {% endif %}">
-                                <div class="panel-body">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">服务器状态</a></td></tr>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">服务器管理</a></td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>系统设置</a>
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse {% if '/' = request.path %} in {% endif %}">
-                                <div class="panel-body">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">邮件设置</a></td></tr>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">日志设置</a></td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>用户管理</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>系统管理</a>
                                 </h4>
                             </div>
                             <div id="collapseFour" class="panel-collapse collapse {% if 'accounts' in request.path %} in {% endif %}">
@@ -78,11 +44,14 @@
                                             <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listuserurl" %}>用户管理</a></td></tr>
                                             <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listroleurl" %}>角色管理</a></td></tr>
                                             <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listpermissionurl" %}>权限管理</a></td></tr>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">部门管理</a></td></tr>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">服务器管理</a></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+
 
                     </div>
                 {% endif %}
