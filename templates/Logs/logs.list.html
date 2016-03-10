@@ -1,0 +1,40 @@
+{% extends "common/base.side.html" %}
+
+{% block title %}
+    操作日志记录
+{% endblock %}
+
+{% block rcontent %}
+
+    <div style="float:right">
+    <form class="form-search" role="form" action={% url "searchlogsurl" %} method="GET"  >
+    {% csrf_token %}
+              <label for="q"></label>
+               <input class="input-medium search-query" placeholder="关键字" type='text' name="q" />
+            <!--  <input  type="image" src="/static/images/find3.png" height="18px" /> -->
+               <!--<button class='btn' type='submit'>
+                   搜索</button> -->
+               <input type="submit"  value="查找" >
+               </form>
+   </div>
+    <table class="table table-hover table-striped   table-condensed">
+        <tr>
+            <th style='text-align: center;'>操作类型</th>
+            <th style='text-align: center;'>操作人</th>
+            <th style='text-align: center;'>操作时间</th>
+            <th style='text-align: center;'>操作日志</th>
+        </tr>
+
+        {% for i in lPage %}
+            <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
+                <td>{{ i.mode }} </td>
+                <td>{{ i.username}} </td>
+                <td>{{ i.time }} </td>
+                <td>{{ i.note }} </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    {% include "common/paginator.html" %}
+{% endblock %}

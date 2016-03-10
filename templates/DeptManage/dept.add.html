@@ -1,0 +1,47 @@
+{% extends "common/base.side.html" %}
+
+{% block title %}
+    部门管理
+{% endblock %}
+
+{% block head %}
+    <script src="/static/js/jquery.bootstrap-duallistbox.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-duallistbox.css">
+{% endblock %}
+
+{% block rcontent %}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            {% url "adddepturl" as theadddepturl %}
+            <a class="btn btn-default {%if request.path = theadddepturl%} active {%endif%}" href={{ theadddepturl }}><span class="glyphicon glyphicon-edit"></span>新建</a>
+            {% url "listdepturl" as thelistdepturl %}
+            <a class="btn btn-default {%if request.path = thelistdepturl%} active {%endif%}" href={{ thelistdepturl }}><span class="glyphicon glyphicon-list"></span>部门列表</a>
+        </div>
+    </div>
+
+    <hr/>
+
+    <form class="form-horizontal" role="form" action={% url "adddepturl" %} method="POST" >
+    {% csrf_token %}
+
+      {% for item in form %}
+          <div class="form-group">
+              <label class="control-label col-md-1">{{item.label}}</label>
+              <div class="col-md-2">
+                  {{item}}
+              </div>
+              <div class="col-md-offset-1 col-md-10">
+                  {{item.errors}}
+              </div>
+          </div>
+      {% endfor %}
+
+      <div class="form-group">
+          <div class="col-md-offset-1 col-md-10">
+              <button type="submit" class="btn btn-danger btn-sm">新 增</button>
+          <div>
+      </div>
+
+   </form>
+
+{% endblock %}

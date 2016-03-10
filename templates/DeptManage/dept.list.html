@@ -1,0 +1,53 @@
+{% extends "common/base.side.html" %}
+
+{% block title %}
+    部门管理
+{% endblock %}
+
+{% block rcontent %}
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            {% url "adddepturl" as theadddepturl %}
+            <a class="btn btn-default {%if request.path = theadddepturl%} active {%endif%}" href={{ theadddepturl }}><span class="glyphicon glyphicon-edit"></span>新建</a>
+            {% url "listdepturl" as thelistdepturl %}
+            <a class="btn btn-default {%if request.path = thelistdepturl%} active {%endif%}" href={{ thelistdepturl }}><span class="glyphicon glyphicon-list"></span>部门列表</a>
+        </div>
+    </div>
+
+    <hr/>
+    <div style="float:right">
+    <form class="form-search" role="form" action={% url "searchdepturl" %} method="GET"  >
+    {% csrf_token %}
+              <label for="q"></label>
+               <input class="input-medium search-query" placeholder="关键字" type='text' name="q" />
+            <!--  <input  type="image" src="/static/images/find3.png" height="18px" /> -->
+               <!--<button class='btn' type='submit'>
+                   搜索</button> -->
+               <input type="submit"  value="查找" >
+               </form>
+   </div>
+    <table class="table table-hover table-striped   table-condensed">
+        <tr>
+            <th style='text-align: center;'>部门名称</th>
+            <th style='text-align: center;'>部门负责人</th>
+            <th style='text-align: center;'>部门级别</th>
+            <th style='text-align: center;'>操作</th>
+        </tr>
+
+        {% for i in lPage %}
+            <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
+                <td>{{ i.name }} </td>
+                <td>{{ i.owner }} </td>
+                <td>{{ i.level }} </td>
+                <td>
+                    <a href={% url "editdepturl" i.id %} onclick="return confirm('确认编辑吗？？')"><span class="glyphicon glyphicon-edit btn-xs"></span></a>
+                    <a href={% url "deletedepturl" i.id %} onclick="return confirm('确认删除吗？？')"><span class="glyphicon glyphicon-trash btn-xs"></span></a>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    {% include "common/paginator.html" %}
+{% endblock %}

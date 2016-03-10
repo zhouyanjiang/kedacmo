@@ -37,11 +37,11 @@
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>部门管理</a>
                                 </h4>
                             </div>
-                            <div id="collapseTwo" class="panel-collapse collapse {% if 'apartments' in request.path %} in {% endif %}">
+                            <div id="collapseTwo" class="panel-collapse collapse {% if 'dept' in request.path %} in {% endif %}">
                                 <div class="panel-body">
                                     <table class="table">
                                         <tbody>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">部门管理</a></td></tr>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listdepturl" %}>部门管理</a></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -55,17 +55,33 @@
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>服务器管理</a>
                                 </h4>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse {% if 'servers' in request.path %} in {% endif %}">
+                            <div id="collapseThree" class="panel-collapse collapse {% if 'server' in request.path %} in {% endif %}">
                                 <div class="panel-body">
                                     <table class="table">
                                         <tbody>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#">服务器管理</a></td></tr>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listserverurl" %}>服务器管理</a></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>日志管理</a>
+                                </h4>
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse {% if 'logs' in request.path %} in {% endif %}">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listlogsurl" %}>操作日志记录</a></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
