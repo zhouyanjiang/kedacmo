@@ -36,4 +36,10 @@ def SearchServer(request):
         results=Operating_Logs.objects.filter(qset).order_by('mode')
     else:
         results = []
-    return render_to_response('Logs/logs.search.html',{'s':results})
+    lst = SelfPaginator(request,results, 20)
+    kwvars = {
+        'lPage':lst,
+        'request':request,
+    }
+
+    return render_to_response('Logs/logs.search.html',kwvars,RequestContext(request))

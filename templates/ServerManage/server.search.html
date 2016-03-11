@@ -5,27 +5,6 @@
 {% endblock %}
 
 {% block rcontent %}
-    <div class="btn-toolbar">
-        <div class="btn-group">
-            {% url "addserverurl" as theaddserverurl %}
-            <a class="btn btn-default {%if request.path = theaddserverurl%} active {%endif%}" href={{ theaddserverurl }}><span class="glyphicon glyphicon-edit"></span>新建</a>
-            {% url "listserverurl" as thelistserverurl %}
-            <a class="btn btn-default {%if request.path = thelistserverurl%} active {%endif%}" href={{ thelistserverurl }}><span class="glyphicon glyphicon-list"></span>服务器列表</a>
-        </div>
-    </div>
-
-    <hr/>
-    <div style="float:right">
-    <form class="form-search" role="form" action={% url "searchserverurl" %} method="GET"  >
-    {% csrf_token %}
-               <label for="q"></label>
-               <input class="input-medium search-query" placeholder="关键字" type='text' name="q" />
-              <!-- <input  type="image" src="/static/images/find3.png" height="18px" /> -->
-              <!-- <button class='btn' type='submit'>
-                   搜索</button> -->
-              <input type="submit"  value="查找" >
-               </form>
-    </div>
     <table class="table table-hover table-striped   table-condensed">
         <tr>
             <th style='text-align: center;'>S</th>
@@ -36,7 +15,7 @@
             <th style='text-align: center;'>操作</th>
         </tr>
 
-        {% for i in s %}
+        {% for i in lPage %}
             <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
                 <td><img src="/static/images/computer.png" height="20px"></td>
                 <td>{{ i.ip }} </td>

@@ -12,20 +12,20 @@
             {% url "listdepturl" as thelistdepturl %}
             <a class="btn btn-default {%if request.path = thelistdepturl%} active {%endif%}" href={{ thelistdepturl }}><span class="glyphicon glyphicon-list"></span>部门列表</a>
         </div>
-    </div>
-
-    <hr/>
     <div style="float:right">
     <form class="form-search" role="form" action={% url "searchdepturl" %} method="GET"  >
     {% csrf_token %}
+              <div class="form-group">
               <label for="q"></label>
-               <input class="input-medium search-query" placeholder="关键字" type='text' name="q" />
-            <!--  <input  type="image" src="/static/images/find3.png" height="18px" /> -->
-               <!--<button class='btn' type='submit'>
-                   搜索</button> -->
-               <input type="submit"  value="查找" >
+              <div class="col-md-8">  <input class="form-control" placeholder="关键字" type='text' name="q" /></div>
+                <button type="submit" class="btn btn-danger btn-sm">查找</button>
+               </div>
                </form>
-   </div>
+    </div>
+    </div>
+
+    <hr/>
+
     <table class="table table-hover table-striped   table-condensed">
         <tr>
             <th style='text-align: center;'>部门名称</th>

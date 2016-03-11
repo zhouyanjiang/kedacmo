@@ -14,7 +14,11 @@ from django.contrib.auth import get_user_model
 from UserManage.forms import LoginUserForm,ChangePasswordForm,AddUserForm,EditUserForm
 from Logs.models import Operating_Logs
 import time
+import sys
 
+reload(sys)
+
+sys.setdefaultencoding('utf-8')
 def LoginUser(request):
     '''用户登录view'''
     if request.user.is_authenticated():
@@ -56,7 +60,7 @@ def ChangePassword(request):
             new_password = form.cleaned_data['new_password1']
             modifyldappassword(user,origin_password,new_password)
             form.save()
-            records = Operating_Logs(username=user,mode='Modify password',note='from %s to %s'%(origin_password,new_password),time=time.strftime('%Y-%m-%d %H:%M:%S'))
+            records = Operating_Logs(username=user,mode='Modify password',note='Success',time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()
             subject = u'修改密码成功'
             message = u'原始密码：%s <br> 新密码：%s'%(origin_password,new_password)

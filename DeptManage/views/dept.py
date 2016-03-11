@@ -69,7 +69,13 @@ def SearchDept(request):
             Q(owner__icontains = s_text)
         )
         results=DeptManager.objects.filter(qset).order_by('name')
+        print results
     else:
         results = []
-        #return render_to_response('DeptManage/dept.list.html',{'search_error':'查找内容不存在！'})
-    return render_to_response('DeptManage/dept.search.html',{'s':results})
+    lst = SelfPaginator(request,results, 10)
+    kwvars = {
+        'lPage':lst,
+        'request':request,
+    }
+
+    return render_to_response('DeptManage/dept.search.html',kwvars,RequestContext(request))

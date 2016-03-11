@@ -72,5 +72,10 @@ def SearchServer(request):
         results=ServerManager.objects.filter(qset).order_by('ip')
     else:
         results = []
-        #return render_to_response('ServerManage/server.list.html',{'search_error':'查找内容不存在！'})
-    return render_to_response('ServerManage/server.search.html',{'s':results})
+    lst = SelfPaginator(request, results , 10)
+    kwvars = {
+        'lPage':lst,
+        'request':request,
+    }
+
+    return render_to_response('ServerManage/server.search.html',kwvars,RequestContext(request))

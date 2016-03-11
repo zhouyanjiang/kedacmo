@@ -11,21 +11,24 @@
             <a class="btn btn-default {%if request.path = theaddserverurl%} active {%endif%}" href={{ theaddserverurl }}><span class="glyphicon glyphicon-edit"></span>新建</a>
             {% url "listserverurl" as thelistserverurl %}
             <a class="btn btn-default {%if request.path = thelistserverurl%} active {%endif%}" href={{ thelistserverurl }}><span class="glyphicon glyphicon-list"></span>服务器列表</a>
-        </div>
-    </div>
 
-    <hr/>
+
+
+        </div>
     <div style="float:right">
     <form class="form-search" role="form" action={% url "searchserverurl" %} method="GET"  >
     {% csrf_token %}
+              <div class="form-group">
               <label for="q"></label>
-               <input class="input-medium search-query" placeholder="关键字" type='text' name="q" />
-            <!--  <input  type="image" src="/static/images/find3.png" height="18px" /> -->
-               <!--<button class='btn' type='submit'>
-                   搜索</button> -->
-               <input type="submit"  value="查找" >
+              <div class="col-md-8">  <input class="form-control" placeholder="关键字" type='text' name="q" /></div>
+                <button type="submit" class="btn btn-danger btn-sm">查找</button>
+
+               </div>
                </form>
    </div>
+    </div>
+
+    <hr/>
     <table class="table table-hover table-striped   table-condensed">
         <tr>
             <th style='text-align: center;'>S</th>
