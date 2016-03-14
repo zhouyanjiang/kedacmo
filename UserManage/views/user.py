@@ -15,10 +15,9 @@ from UserManage.forms import LoginUserForm,ChangePasswordForm,AddUserForm,EditUs
 from Logs.models import Operating_Logs
 import time
 import sys
-
 reload(sys)
-
 sys.setdefaultencoding('utf-8')
+
 def LoginUser(request):
     '''用户登录view'''
     if request.user.is_authenticated():
@@ -63,7 +62,7 @@ def ChangePassword(request):
             records = Operating_Logs(username=user,mode='Modify password',note='Success',time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()
             subject = u'修改密码成功'
-            message = u'原始密码：%s <br> 新密码：%s'%(origin_password,new_password)
+            message = u'修改密码成功'
             sendmail(gen_email(user),message,subject)
             return HttpResponseRedirect(reverse('logouturl'))
     else:
@@ -149,10 +148,13 @@ def DeleteUser(request,ID):
 def ResetPassword(request,ID):
     user = get_user_model().objects.get(id = ID)
     newpassword = get_user_model().objects.make_random_password(length=6,allowed_chars='abcdefghjklmnpqrstuvwxyABCDEFGHJKLMNPQRSTUVWXY3456789')
-    print '====>ResetPassword:%s-->%s' %(user.username,newpassword)
+    #print '====>ResetPassword:%s-->%s' %(user.username,newpassword)
     user.set_password(newpassword)
     user.save()
-
+    resetldappassowrd(user.username,newpassword)
+    subject = u'重置密码成功'
+    message = u'新密码:%s'%newpassword
+    sendmail(gen_email(user.username),message,subject)
     kwvars = {
         'object':user,
         'newpassword':newpassword,

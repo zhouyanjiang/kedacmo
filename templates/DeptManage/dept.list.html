@@ -30,7 +30,8 @@
         <tr>
             <th style='text-align: center;'>部门名称</th>
             <th style='text-align: center;'>部门负责人</th>
-            <th style='text-align: center;'>部门级别</th>
+            <th style='text-align: center;'>上级部门</th>
+            <th style='text-align: center;'>备注</th>
             <th style='text-align: center;'>操作</th>
         </tr>
 
@@ -38,7 +39,8 @@
             <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
                 <td>{{ i.name }} </td>
                 <td>{{ i.owner }} </td>
-                <td>{{ i.level }} </td>
+                <td>{{ i.fdept }} </td>
+                <td>{{ i.note }} </td>
                 <td>
                     <a href={% url "editdepturl" i.id %} onclick="return confirm('确认编辑吗？？')"><span class="glyphicon glyphicon-edit btn-xs"></span></a>
                     <a href={% url "deletedepturl" i.id %} onclick="return confirm('确认删除吗？？')"><span class="glyphicon glyphicon-trash btn-xs"></span></a>

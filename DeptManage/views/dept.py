@@ -65,8 +65,9 @@ def SearchDept(request):
     if len(s_text) != 0:
         qset = (
             Q(name__icontains = s_text )|
-            Q(level__icontains = s_text)|
-            Q(owner__icontains = s_text)
+            Q(fdept__icontains = s_text)|
+            Q(owner__icontains = s_text)|
+            Q(note__icontains = s_text)
         )
         results=DeptManager.objects.filter(qset).order_by('name')
         print results

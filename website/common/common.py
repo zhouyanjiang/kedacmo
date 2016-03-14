@@ -15,8 +15,11 @@ import xlwt
 import xlrd
 import smtplib
 import ldap
+import ldap.modlist as modlist
 from email.mime.text import MIMEText
 from email.header import Header
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 NO_OUT = '>/dev/null 2>&1'
 LDAP_HOST = '172.16.6.107'
@@ -131,6 +134,24 @@ def modifyldappassword(username,oldpass,newpass):
     result_type, result_data = l.result(ldap_result_id,1)
     user = result_data[0][0]
     l.passwd(user,oldpass,newpass)
+
+def resetldappassowrd(username,newpass):
+    l = ldap.initialize("ldap://%s"%LDAP_HOST)
+    l.protocol_version = ldap.VERSION3
+    l.simple_bind(LDAP_ADMIN,LDAP_PASSWD)
+    searchScope  = ldap.SCOPE_SUBTREE
+    searchFiltername = "cn"
+    retrieveAttributes = None
+    searchFilter = '(' + searchFiltername + "=" + username +')'
+    ldap_result_id = l.search(LDAP_BIND, searchScope, searchFilter, retrieveAttributes)
+    result_type, result_data = l.result(ldap_result_id,1)
+    user = result_data[0][0]
+    oldpass = result_data[0][1]['userPassword'][0]
+    old = {'userPassword':oldpass}
+    new = {'userPassword':str(newpass)}
+    ldif = modlist.modifyModlist(old,new)
+    print old,new
+    l.modify_s(user,ldif)
 
 def checkldap(username,password):
     l = ldap.initialize("ldap://%s"%LDAP_HOST)
