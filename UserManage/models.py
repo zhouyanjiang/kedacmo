@@ -50,7 +50,6 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     nickname = models.CharField(max_length=64, null=True)
-    sex = models.CharField(max_length=2, null=True,blank=True)
     role = models.ForeignKey(RoleList,null=True,blank=True)
 
     objects = UserManager()

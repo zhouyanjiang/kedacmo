@@ -100,13 +100,12 @@ class ChangePasswordForm(forms.Form):
 class AddUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','password','email','nickname','sex','role','is_active')
+        fields = ('username','password','email','nickname','role','is_active')
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
             'password' : forms.PasswordInput(attrs={'class':'form-control'}),
             'email' : forms.TextInput(attrs={'class':'form-control'}),
             'nickname' : forms.TextInput(attrs={'class':'form-control'}),
-            'sex' : forms.RadioSelect(choices=((u'男', u'男'),(u'女', u'女')),attrs={'class':'list-inline'}),
             'role' : forms.Select(attrs={'class':'form-control'}),
             'is_active' : forms.Select(choices=((True, u'启用'),(False, u'禁用')),attrs={'class':'form-control'}),
         }
@@ -121,8 +120,6 @@ class AddUserForm(forms.ModelForm):
         self.fields['email'].error_messages={'required':u'请输入邮箱','invalid':u'请输入有效邮箱'}
         self.fields['nickname'].label=u'姓 名'
         self.fields['nickname'].error_messages={'required':u'请输入姓名'}
-        self.fields['sex'].label=u'性 别'
-        self.fields['sex'].error_messages={'required':u'请选择性别'}
         self.fields['role'].label=u'角 色'
         self.fields['is_active'].label=u'状 态'
 
@@ -135,13 +132,12 @@ class AddUserForm(forms.ModelForm):
 class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','email','nickname','sex','role','is_active')
+        fields = ('username','email','nickname','role','is_active')
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
             #'password': forms.HiddenInput,
             'email' : forms.TextInput(attrs={'class':'form-control'}),
             'nickname' : forms.TextInput(attrs={'class':'form-control'}),
-            'sex' : forms.RadioSelect(choices=((u'男', u'男'),(u'女', u'女')),attrs={'class':'list-inline'}),
             'role' : forms.Select(choices=[(x.name,x.name) for x in RoleList.objects.all()],attrs={'class':'form-control'}),
             'is_active' : forms.Select(choices=((True, u'启用'),(False, u'禁用')),attrs={'class':'form-control'}),
         }
@@ -154,8 +150,6 @@ class EditUserForm(forms.ModelForm):
         self.fields['email'].error_messages={'required':u'请输入邮箱','invalid':u'请输入有效邮箱'}
         self.fields['nickname'].label=u'姓 名'
         self.fields['nickname'].error_messages={'required':u'请输入姓名'}
-        self.fields['sex'].label=u'性 别'
-        self.fields['sex'].error_messages={'required':u'请选择性别'}
         self.fields['role'].label=u'角 色'
         self.fields['is_active'].label=u'状 态'
 
