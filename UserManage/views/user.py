@@ -116,11 +116,14 @@ def AddUser(request):
 @PermissionVerify()
 def EditUser(request,ID):
     user = get_user_model().objects.get(id = ID)
-
+    
     if request.method=='POST':
         form = EditUserForm(request.POST,instance=user)
+        username = request.POST['username']
+        newmail = request.POST['email']
         if form.is_valid():
             form.save()
+            resetldapemail(username,newmail)
             return HttpResponseRedirect(reverse('listuserurl'))
     else:
         form = EditUserForm(instance=user
@@ -131,7 +134,7 @@ def EditUser(request,ID):
         'form':form,
         'request':request,
     }
-
+    
     return render_to_response('UserManage/user.edit.html',kwvars,RequestContext(request))
 
 @login_required
@@ -149,8 +152,26 @@ def SearchUser(request):
     searchname = request.GET.get('q','')
     if len(searchname) != 0:
         user = get_user_model().objects.filter(username=searchname)
+        info = ""
+        if not user:
+            try:
+                info = genldapinfo(searchname)
+            except Exception:
+                info = ""
+        email = ""
+        if info:
+            try:
+                email = info[1]['mail'][0]
+            except Exception:
+                email = " "
+        print email
+        if email:
+            c = User(username=searchname, email=email,is_active=1)
+            c.save()
+            user = get_user_model().objects.filter(username=searchname)
     else:
         user = []
+    
     lst = SelfPaginator(request,user, 10)
     kwvars = {
         'lPage':lst,

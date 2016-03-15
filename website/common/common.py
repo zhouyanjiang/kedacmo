@@ -135,6 +135,19 @@ def modifyldappassword(username,oldpass,newpass):
     user = result_data[0][0]
     l.passwd(user,oldpass,newpass)
 
+def genldapinfo(username):
+    l = ldap.initialize("ldap://%s"%LDAP_HOST)
+    l.protocol_version = ldap.VERSION3
+    l.simple_bind(LDAP_ADMIN,LDAP_PASSWD)
+    searchScope  = ldap.SCOPE_SUBTREE
+    searchFiltername = "cn"
+    retrieveAttributes = None
+    searchFilter = '(' + searchFiltername + "=" + username +')'
+    ldap_result_id = l.search(LDAP_BIND, searchScope, searchFilter, retrieveAttributes)
+    result_type, result_data = l.result(ldap_result_id,1)
+    info = result_data[0]
+    return info
+
 def resetldappassowrd(username,newpass):
     l = ldap.initialize("ldap://%s"%LDAP_HOST)
     l.protocol_version = ldap.VERSION3
@@ -150,7 +163,26 @@ def resetldappassowrd(username,newpass):
     old = {'userPassword':oldpass}
     new = {'userPassword':str(newpass)}
     ldif = modlist.modifyModlist(old,new)
-    print old,new
+    l.modify_s(user,ldif)
+
+def resetldapemail(username,newmail):
+    l = ldap.initialize("ldap://%s"%LDAP_HOST)
+    l.protocol_version = ldap.VERSION3
+    l.simple_bind(LDAP_ADMIN,LDAP_PASSWD)
+    searchScope  = ldap.SCOPE_SUBTREE
+    searchFiltername = "cn"
+    retrieveAttributes = None
+    searchFilter = '(' + searchFiltername + "=" + username +')'
+    ldap_result_id = l.search(LDAP_BIND, searchScope, searchFilter, retrieveAttributes)
+    result_type, result_data = l.result(ldap_result_id,1)
+    user = result_data[0][0]
+    try:
+        oldmail = result_data[0][1]['mail'][0]
+    except Exception:
+        oldmail = ""
+    old = {'mail':oldmail}
+    new = {'mail':str(newmail)}
+    ldif = modlist.modifyModlist(old,new)
     l.modify_s(user,ldif)
 
 def checkldap(username,password):

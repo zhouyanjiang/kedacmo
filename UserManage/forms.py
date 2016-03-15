@@ -149,12 +149,12 @@ class EditUserForm(forms.ModelForm):
         self.fields['email'].label=u'邮 箱'
         self.fields['email'].error_messages={'required':u'请输入邮箱','invalid':u'请输入有效邮箱'}
         self.fields['nickname'].label=u'姓 名'
-        self.fields['nickname'].error_messages={'required':u'请输入姓名'}
         self.fields['role'].label=u'角 色'
         self.fields['is_active'].label=u'状 态'
 
     def clean_password(self):
         return self.cleaned_data['password']
+
 
 class PermissionListForm(forms.ModelForm):
     class Meta:
