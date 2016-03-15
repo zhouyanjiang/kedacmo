@@ -13,6 +13,7 @@ from django.contrib import auth
 from django.contrib.auth import get_user_model
 from UserManage.forms import LoginUserForm,ChangePasswordForm,AddUserForm,EditUserForm
 from Logs.models import Operating_Logs
+from UserManage.models import User
 import time
 import sys
 reload(sys)
@@ -59,7 +60,7 @@ def ChangePassword(request):
             new_password = form.cleaned_data['new_password1']
             modifyldappassword(user,origin_password,new_password)
             form.save()
-            records = Operating_Logs(username=user,mode='Modify password',note='Success',time=time.strftime('%Y-%m-%d %H:%M:%S'))
+            records = Operating_Logs(username=user,mode='修改密码',note='Success',time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()
             subject = u'修改密码成功'
             message = u'修改密码成功'
@@ -144,6 +145,22 @@ def DeleteUser(request,ID):
     return HttpResponseRedirect(reverse('listuserurl'))
 
 @login_required
+def SearchUser(request):
+    searchname = request.GET.get('q','')
+    if len(searchname) != 0:
+        user = get_user_model().objects.filter(username=searchname)
+    else:
+        user = []
+    lst = SelfPaginator(request,user, 10)
+    kwvars = {
+        'lPage':lst,
+        'request':request,
+    }
+
+    return render_to_response('UserManage/user.search.html',kwvars,RequestContext(request))
+
+
+@login_required
 @PermissionVerify()
 def ResetPassword(request,ID):
     user = get_user_model().objects.get(id = ID)
@@ -155,6 +172,8 @@ def ResetPassword(request,ID):
     subject = u'重置密码成功'
     message = u'新密码:%s'%newpassword
     sendmail(gen_email(user.username),message,subject)
+    records = Operating_Logs(username=request.user,mode=u'重置密码',note=u'给用户%s重置密码'%user.username,time=time.strftime('%Y-%m-%d %H:%M:%S'))
+    records.save()
     kwvars = {
         'object':user,
         'newpassword':newpassword,

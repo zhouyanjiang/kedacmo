@@ -10,13 +10,16 @@ from DeptManage.models import DeptManager
 from Logs.models import Operating_Logs
 from django.db.models import Q
 import time
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def AddDept(request):
     if request.method == "POST":
         form = DeptListForm(request.POST)
         if form.is_valid():
             form.save()
-            records = Operating_Logs(username=request.user,mode='Add a dept',note=request.POST['name'],time=time.strftime('%Y-%m-%d %H:%M:%S'))
+            records = Operating_Logs(username=request.user,mode=u'新建部门',note=request.POST['name'],time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()
             return HttpResponseRedirect(reverse('listdepturl'))
     else:
@@ -61,14 +64,25 @@ def DeleteDept(request,ID):
     return HttpResponseRedirect(reverse('listdepturl'))
 
 def SearchDept(request):
-    s_text=request.GET.get('q','')
-    if len(s_text) != 0:
-        qset = (
-            Q(name__icontains = s_text )|
-            Q(fdept__icontains = s_text)|
-            Q(owner__icontains = s_text)|
-            Q(note__icontains = s_text)
-        )
+    cond = request.GET.get('q','')
+    if len(cond) != 0:
+        if ":" not in cond:
+            qset = (
+                Q(name__icontains = cond )|
+                Q(fdept__icontains = cond)|
+                Q(owner__icontains = cond)|
+                Q(note__icontains = cond)
+            )
+        else:
+            try:
+                k=cond.split(":")[0]
+                v=cond.split(":")[1]
+                if k == 'name':qset = Q(name = v)
+                if k == 'fdept':qset = Q(fdept = v)
+                if k == 'owner':qset = Q(owner = v)
+                if k == 'note':qset = Q(note = v)
+            except Exception:
+                return 0
         results=DeptManager.objects.filter(qset).order_by('name')
         print results
     else:

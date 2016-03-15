@@ -6,17 +6,17 @@
 
 {% block rcontent %}
 
-    <table class="table table-hover table-striped   table-condensed">
+    <table class="table table-hover table-striped table-bordered  table-condensed">
         <tr>
-            <th style='text-align: center;'>部门名称</th>
-            <th style='text-align: center;'>部门负责人</th>
-            <th style='text-align: center;'>上级部门</th>
-            <th style='text-align: center;'>备注</th>
-            <th style='text-align: center;'>操作</th>
+            <th>部门名称</th>
+            <th>部门负责人</th>
+            <th>上级部门</th>
+            <th>备注</th>
+            <th>操作</th>
         </tr>
 
         {% for i in lPage %}
-            <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
+            <tr style="font-size: 13px;">
                 <td>{{ i.name }} </td>
                 <td>{{ i.owner }} </td>
                 <td>{{ i.fdept }} </td>

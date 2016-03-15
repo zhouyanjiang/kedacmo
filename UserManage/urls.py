@@ -11,6 +11,7 @@ urlpatterns = patterns('UserManage.views',
 
     url(r'^user/changepwd/$', 'user.ChangePassword', name='changepasswordurl'),
     url(r'^user/resetpwd/(?P<ID>\d+)/$', 'user.ResetPassword', name='resetpasswordurl'),
+    url(r'^user/search/$', 'user.SearchUser', name='searchuserurl'),
 
     url(r'^role/add/$', 'role.AddRole', name='addroleurl'),
     url(r'^role/list/$', 'role.ListRole', name='listroleurl'),

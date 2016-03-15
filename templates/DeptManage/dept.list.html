@@ -26,17 +26,17 @@
 
     <hr/>
 
-    <table class="table table-hover table-striped   table-condensed">
+    <table class="table table-hover table-striped table-bordered  table-condensed">
         <tr>
-            <th style='text-align: center;'>部门名称</th>
-            <th style='text-align: center;'>部门负责人</th>
-            <th style='text-align: center;'>上级部门</th>
-            <th style='text-align: center;'>备注</th>
-            <th style='text-align: center;'>操作</th>
+            <th><a href=# title="name">部门名称</a></th>
+            <th><a href=# title="owner">部门负责人</a></th>
+            <th><a href=# title="fdept">上级部门</a></th>
+            <th><a href=# title="note">备注</a></th>
+            <th>操作</th>
         </tr>
 
         {% for i in lPage %}
-            <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
+            <tr style="font-size: 13px;">
                 <td>{{ i.name }} </td>
                 <td>{{ i.owner }} </td>
                 <td>{{ i.fdept }} </td>

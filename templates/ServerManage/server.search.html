@@ -5,18 +5,18 @@
 {% endblock %}
 
 {% block rcontent %}
-    <table class="table table-hover table-striped   table-condensed">
+    <table class="table table-hover table-striped  table-bordered table-condensed">
         <tr>
-            <th style='text-align: center;'>S</th>
-            <th style='text-align: center;'>服务器IP</th>
-            <th style='text-align: center;'>登录名</th>
-            <th style='text-align: center;'>服务器类型</th>
-            <th style='text-align: center;'>服务器用途</th>
-            <th style='text-align: center;'>操作</th>
+            <th>S</th>
+            <th>服务器IP</th>
+            <th>登录名</th>
+            <th>服务器类型</th>
+            <th>服务器用途</th>
+            <th>操作</th>
         </tr>
 
         {% for i in lPage %}
-            <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
+            <tr style="font-size: 13px;">
                 <td><img src="/static/images/computer.png" height="20px"></td>
                 <td>{{ i.ip }} </td>
                 <td>{{ i.logname|default:"----" }} </td>

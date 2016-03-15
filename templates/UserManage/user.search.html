@@ -5,30 +5,6 @@
 {% endblock %}
 
 {% block rcontent %}
-    <div class="btn-toolbar">
-        <div class="btn-group">
-            {% url "adduserurl" as theadduserurl %}
-            <a class="btn btn-default {%if request.path = theadduserurl%} active {%endif%}" href={{ theadduserurl }}><span class="glyphicon glyphicon-edit"></span>新建用户</a>
-            {% url "listuserurl" as thelistuserurl %}
-            <a class="btn btn-default {%if request.path = thelistuserurl%} active {%endif%}" href={{ thelistuserurl }}><span class="glyphicon glyphicon-list"></span>用户列表</a>
-        </div>
-
-    <div style="float:right">
-    <form class="form-search" role="form" action={% url "searchuserurl" %} method="GET"  >
-    {% csrf_token %}
-              <div class="form-group">
-              <label for="q"></label>
-              <div class="col-md-8">  <input class="form-control" placeholder="账号" type='text' name="q" /></div>
-                <button type="submit" class="btn btn-danger btn-sm">查找</button>
-               </div>
-               </form>
-    </div>
-
-
-    </div>
-
-    <hr/>
-
     <table class="table table-hover table-striped  table-bordered table-condensed">
         <tr>
             <th>账号</th>

@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block rcontent %}
-    <table class="table table-hover table-striped   table-condensed">
+    <table class="table table-hover table-striped table-bordered table-condensed">
         <tr>
-            <th style='text-align: center;'>操作类型</th>
-            <th style='text-align: center;'>操作人</th>
-            <th style='text-align: center;'>操作时间</th>
-            <th style='text-align: center;'>操作日志</th>
+            <th>操作类型</th>
+            <th>操作人</th>
+            <th>操作时间</th>
+            <th>操作日志</th>
         </tr>
 
         {% for i in lPage %}
-            <tr style="vertical-align: middle;text-align: center;font-size: 13px;">
+            <tr style="font-size: 13px;">
                 <td>{{ i.mode }} </td>
                 <td>{{ i.username }} </td>
                 <td>{{ i.time }} </td>

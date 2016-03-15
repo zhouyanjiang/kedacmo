@@ -33,7 +33,7 @@ def SearchServer(request):
             Q(mode__icontains = s_text)|
             Q(note__icontains = s_text)
         )
-        results=Operating_Logs.objects.filter(qset).order_by('mode')
+        results=Operating_Logs.objects.filter(qset).order_by('time')
     else:
         results = []
     lst = SelfPaginator(request,results, 20)

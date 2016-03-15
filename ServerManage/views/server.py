@@ -16,7 +16,7 @@ def AddServer(request):
         form = ServerListForm(request.POST)
         if form.is_valid():
             form.save()
-            records = Operating_Logs(username=request.user,mode='Add a server',note=request.POST['ip'],time=time.strftime('%Y-%m-%d %H:%M:%S'))
+            records = Operating_Logs(username=request.user,mode='增添服务器',note=request.POST['ip'],time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()
             return HttpResponseRedirect(reverse('listserverurl'))
     else:
