@@ -19,6 +19,7 @@ class ServerManager(models.Model):
     passwd = models.CharField(max_length=40)
     servertype = models.CharField(max_length=255)
     serveruse = models.CharField(max_length=255)
+    note = models.CharField(max_length=255)
     #status = models.ForeignKey(ServerStatus,null=True,blank=True)
 
     def __unicode__(self):

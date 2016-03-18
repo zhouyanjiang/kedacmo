@@ -28,7 +28,7 @@ def PermissionVerify():
 
                 matchUrl = []
                 for x in role_permission_list:
-                    if request.path == x.url or request.path.rstrip('/') == x.url: #精确匹配，判断request.path是否与permission表中的某一条相符
+                    if request.path == x.url or request.path.strip('/') == x.url or request.path.startswith(x.url): #精确匹配，判断request.path是否与permission表中的某一条相符
                         matchUrl.append(x.url)
                     elif request.path.startswith(x.url): #判断request.path是否以permission表中的某一条url开头
                         matchUrl.append(x.url)

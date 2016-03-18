@@ -19,7 +19,8 @@ urlpatterns = patterns('',
     url(r'^server/',include('ServerManage.urls' )),
     url(r'^dept/',include('DeptManage.urls' )),
     url(r'^logs/',include('Logs.urls' )),
-
+    url(r'^apply/',include('Apply.urls' )),
+    url(r'^apply/apply/ajax_dict/','Apply.views.applygit.ajax_dict',name='ajax-dict'),
     #static
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': settings.STATIC_ROOT,}),
 

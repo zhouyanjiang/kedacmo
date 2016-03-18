@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 from django import forms
 from DeptManage.models import DeptManager
+from UserManage.models import User
 
 class DeptListForm(forms.ModelForm):
     class Meta:
@@ -23,3 +24,12 @@ class DeptListForm(forms.ModelForm):
         self.fields['fdept'].required=False
         self.fields['note'].label=u'备注'
         self.fields['note'].required=False
+
+    def clean_owner(self):
+        owner = self.cleaned_data.get('owner')
+        try:
+            User.objects.get(username=owner)
+            return owner
+        except Exception:
+            raise forms.ValidationError(u'没这个人')
+
