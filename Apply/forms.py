@@ -9,7 +9,7 @@ class ApplyGitForm(forms.ModelForm):
         model = ApplyGit
         fields = ('serverIp','gitName','authority','reason')
         widgets = {
-            'serverIp' : forms.Select(choices=[("","")]+[(x.ip,x.ip) for x in ServerManager.objects.all()],attrs={'class':'form-control'}),
+            'serverIp' : forms.Select(choices=[("","")]+[(x.ip,x.ip) for x in ServerManager.objects.filter(note='gerrit')],attrs={'class':'form-control'}),
             'gitName' : forms.Select(choices=[(u'-',u'请选择仓库')],attrs={'class':'form-control'}),
             'authority' : forms.Select(choices=((u'-',u'请选择权限'),(u'read',u'读取和提交'),(u'submit',u'审核'),(u'tag',u'tag提交')),attrs={'class':'form-control'}),
             'reason' : forms.TextInput(attrs={'class':'form-control'}),

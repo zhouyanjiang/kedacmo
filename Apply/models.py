@@ -6,6 +6,7 @@ class ApplyGit(models.Model):
     serverIp = models.CharField(max_length=255)
     gitName = models.CharField(max_length=255)
     authority = models.CharField(max_length=255)
+    operator = models.CharField(max_length=255)
     applicant = models.CharField(max_length=255)
     reason = models.CharField(max_length=255)
     starttime = models.CharField(max_length=255)

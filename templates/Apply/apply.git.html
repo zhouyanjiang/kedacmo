@@ -14,8 +14,6 @@
         <div class="btn-group">
             {% url "applygiturl" as theapplygiturl %}
             <a class="btn btn-default {%if request.path = theapplygiturl%} active {%endif%}" href={{ theapplygiturl }}>Git</a>
-            {% url "applygiturl" as theapplygiturl %}
-            <a class="btn btn-default {%if request.path = theapplygiturl%} active {%endif%}" href={{ theapplygiturl }}>Svn</a>
         </div>
     </div>
 

@@ -1,0 +1,40 @@
+{% extends "common/base.side.html" %}
+
+{% block title %}
+    部门管理
+{% endblock %}
+
+{% block rcontent %}
+    <div class="btn-toolbar">
+
+    <table class="table table-hover table-striped table-bordered  table-condensed">
+        <tr>
+            <th><a href=# title="serverIp">IP</a></th>
+            <th><a href=# title="gitName">Git</a></th>
+            <th><a href=# title="authority">权限</a></th>
+            <th><a href=# title="applicant">申请人</a></th>
+            <th><a href=# title="operator">审核人</a></th>
+            <th><a href=# title="reason">理由</a></th>
+            <th><a href=# title="starttime">开始时间</a></th>
+            <th><a href=# title="endtime">结束时间</a></th>
+            <th><a href=# title="status">状态</a></th>
+        </tr>
+
+        {% for i in lPage %}
+            <tr style="font-size: 13px;">
+                <td>{{ i.serverIp }} </td>
+                <td>{{ i.gitName }} </td>
+                <td>{{ i.authority }} </td>
+                <td>{{ i.applicant }} </td>
+                <td>{{ i.operator }} </td>
+                <td>{{ i.reason }} </td>
+                <td>{{ i.starttime }} </td>
+                <td>{{ i.endtime }} </td>
+                <td>{{ i.status }} </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    {% include "common/paginator.html" %}
+{% endblock %}

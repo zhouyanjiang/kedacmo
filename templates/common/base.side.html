@@ -19,8 +19,25 @@
                                 <div class="panel-body">
                                     <table class="table">
                                         <tbody>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#"}>我的待办</a></td></tr>
-                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href="#"}>我的申请</a></td></tr>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listtodourl" %}>我的待办</a></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight" class="collapsed"><span class="glyphicon glyphicon-list-alt btn-xs"></span>我的申请</a>
+                                </h4>
+                            </div>
+                            <div id="collapseEight" class="panel-collapse collapse {% if 'myapply' = request.path %} in {% endif %}">
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr><td><span class="glyphicon glyphicon-tree-conifer btn-xs"></span><a href={% url "listmyapplyurl" %}>代码申请</a></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
