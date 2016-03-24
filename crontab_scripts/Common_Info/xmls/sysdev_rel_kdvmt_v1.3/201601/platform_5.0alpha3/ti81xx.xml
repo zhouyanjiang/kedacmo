@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="origin" fetch="ssh://172.16.8.9:29418/KDV" />
+  <default revision="20151222_Mustang_V5R0_Alpha3"  remote="origin" />
+     
+  <project path="kernel/netra-2.6.37" name="kernel/netra-2.6.37"   />  
+  <project path="nip" name="nip/netra-nip"  />  
+  <project path="platform" name="platform/netra-platform"  />  
+  <project path="source" name="misc-modules"  revision="master"/>  
+  <project path="uboot" name="uboot/netra-uboot-2010.06"  />
+ </manifest>
+

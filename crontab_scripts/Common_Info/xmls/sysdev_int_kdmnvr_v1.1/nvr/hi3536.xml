@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <info usage="月版本repo"/>
+  <remote name="origin" fetch="ssh://172.16.8.9:29418/" review="http://172.16.8.9:8080/" />
+  <default revision="master" remote="origin" />
+  
+  <project path="makerulers" name="sysdev/makerulers" revision="master_v1.0" >
+	  <copyfile src="build/core/main.mk" dest="make.mk" />
+  </project>
+
+  <project path="packages/drvlib" name="sysdev/packages/drvlib"  />
+  <project path="packages/linux_lsp/kernel/klsp"  name="sysdev/packages/linux_lsp/kernel/klsp" />
+  <project path="packages/linux_lsp/rootfs/nfs" name="sysdev/packages/linux_lsp/rootfs/nfs"/>
+  <project path="packages/linux_lsp/boot/u-boot-2010.06" name="sysdev/packages/linux_lsp/boot/u-boot-2010.06" revision="master_hi353x" />
+  <project path="packages/linux_lsp/kernel/linux-3.10.0"  name="sysdev/packages/linux_lsp/kernel/linux-3.10.0" />
+  <project path="sdks/hisilicon/hi35xx"   name="sysdev/sdks/hisilicon/hi35xx"  />
+  <project path="packages/netcbbs"  name="sysdev/packages/netcbbs" />
+  <project path="packages/ddns"  name="sysdev/packages/ddns" /> 
+  <project path="packages/upnp"  name="sysdev/packages/upnp"  />   
+  <project path="packages/smoothsend"  name="sysdev/packages/smoothsend" revision="master_miniss" />
+  <project path="packages/ftpc"  name="sysdev/packages/ftpc" /> 
+  <project path="packages/toolslib"  name="sysdev/packages/toolslib" /> 
+</manifest>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- 
+  <remote  name="sysdev/korg"
+           fetch="git://android.git.kernel.org/"
+           review="review.source.android.com" />
+  <default revision="froyo" remote="korg" />
+
+  <project path="build" name="sysdev/platform/build">
+    <copyfile src="core/root.mk" dest="Makefile" />
+  </project>
+ 
+  <remote name="sysdev/runze" fetch="git://172.16.129.38/" />
+  <project path="project2" name="sysdev/project2" revision="V2" remote="runze" />
+  <project path="project3" name="sysdev/project3" revision="master" remote="runze" />
+ 
+  -->
+
+   <remote name="origin" fetch="ssh://172.16.8.9:29418/" review="http://172.16.8.9:8080/" />
+   <default revision="refs/tags/SYSDEV_INT_HI3516A_V1.1_20150724-1428#22" remote="origin" />
+
+ 
+   <project path="makerulers" name="sysdev/makerulers" >
+           <copyfile src="build/core/main.mk" dest="make.mk" />
+   </project>
+ 
+   <project path="packages/drvlib" name="sysdev/packages/drvlib"  />
+   <project path="packages/linux_lsp/kernel/klsp"  name="sysdev/packages/linux_lsp/kernel/klsp"  />
+   <project path="packages/linux_lsp/rootfs/busybox" name="sysdev/packages/linux_lsp/rootfs/busybox"  />
+   <project path="packages/linux_lsp/rootfs/nfs" name="sysdev/packages/linux_lsp/rootfs/nfs"  />
+   <project path="packages/linux_lsp/boot/u-boot-2010.06" name="sysdev/packages/linux_lsp/boot/u-boot-2010.06" />
+   <project path="packages/linux_lsp/kernel/linux-3.4.35"  name="sysdev/packages/linux_lsp/kernel/linux-3.4.35"  />
+   <project path="sdks/hisilicon/hi3516a"   name="sysdev/sdks/hisilicon/hi3516a" />
+   <project path="packages/ispctrl"    name="sysdev/packages/ispctrl"  revision="sysdev_v2.3.0-x" />
+   <project path="packages/udm" name="sysdev/packages/udm"   />
+   <project path="packages/linux_lsp/rootfs/boards"  name="sysdev/packages/linux_lsp/rootfs/boards"  />
+   <project path="packages/netcbbs"  name="sysdev/packages/netcbbs"  />
+   <project path="packages/ddns"  name="sysdev/packages/ddns"  />
+   <project path="packages/802dot1x"  name="sysdev/packages/802dot1x"  />
+   <project path="packages/upnp"  name="sysdev/packages/upnp"  />
+   <project path="packages/smoothsend"  name="sysdev/packages/smoothsend"  />
+   <project path="packages/ftpc"  name="sysdev/packages/ftpc"  />
+   <project path="packages/kdbox"  name="sysdev/packages/kdbox"  />
+   <project path="packages/sysdbg"  name="sysdev/packages/sysdbg"  />
+   <project path="packages/mediactrl"  name="sysdev/packages/mediactrl" revision="sysdev_v1.2.4-x"  />
+   <project path="packages/sac"  name="sysdev/packages/sac"    />
+   <project path="packages/mbm"  name="sysdev/packages/mbm"   />
+
+ </manifest>

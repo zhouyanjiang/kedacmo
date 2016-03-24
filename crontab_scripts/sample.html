@@ -1,0 +1,16 @@
+{% extends "common/base.side.html" %}
+{% block title %}
+    系统部Repo信息
+{% endblock %}
+
+{% block rcontent %}
+    <div class="btn-toolbar">
+    <table id="table" data-toggle="table" data-search="true">
+        <thead>
+        <tr>
+            <th data-sortable="true" data-field="branch">分支</th>
+            <th data-sortable="true" data-field="path">路径</th>
+            <th data-sortable="true" data-field="note">用途</th>
+            <th data-sortable="true" data-field="address">下载地址</th>
+        </tr>
+        </thead>

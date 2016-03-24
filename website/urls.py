@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from django.conf import settings
-from website.views import Home,About
+from website.views import Home,About,SysRepoInfo
 
 #from django.contrib import admin
 #admin.autodiscover()
@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^$',Home),
     url(r'^about/$',About),
+    url(r'^sysrepoinfo/$',SysRepoInfo,name='sysrepoinfo'),
 
     url(r'^accounts/',include('UserManage.urls' )),
     url(r'^server/',include('ServerManage.urls' )),

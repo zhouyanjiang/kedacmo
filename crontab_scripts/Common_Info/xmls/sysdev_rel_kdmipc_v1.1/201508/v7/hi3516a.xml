@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+   <info usage="IPC-B3-REL-HI3516A"/>	
+   <remote name="origin" fetch="ssh://172.16.8.9:29418/sysdev/" />
+   <default revision="refs/tags/SYSDEV_INT_HI3516A_V1.1_20150903-0620#34" remote="origin" />
+ 
+   <project path="makerulers" name="makerulers" >
+           <copyfile src="build/core/main.mk" dest="make.mk" />
+   </project>
+ 
+   <project path="packages/drvlib" name="packages/drvlib" revision="sysdev_v1.0.1-x" />
+   <project path="packages/linux_lsp/kernel/klsp"  name="packages/linux_lsp/kernel/klsp" revision="sysdev_v1.0-rc1-201508"   />
+   <project path="packages/linux_lsp/rootfs/busybox" name="packages/linux_lsp/rootfs/busybox"   />
+   <project path="packages/linux_lsp/rootfs/nfs" name="packages/linux_lsp/rootfs/nfs" revision="sysdev_kdm_v1.0-201508"  />
+   <project path="packages/linux_lsp/boot/u-boot-2010.06" name="packages/linux_lsp/boot/u-boot-2010.06" revision="sysdev_kdm_hi3516a_v1.0-201508" />
+   <project path="packages/linux_lsp/kernel/linux-3.4.35"  name="packages/linux_lsp/kernel/linux-3.4.35" revision="sysdev_kdm_hi3516a_v1.0-201508"  />
+   <project path="sdks/hisilicon/hi3516a"   name="sdks/hisilicon/hi3516a"  />
+   <project path="packages/ispctrl"    name="packages/ispctrl" revision="sysdev_v2.3.1-x" />
+   <project path="packages/udm" name="packages/udm"   />
+   <project path="packages/linux_lsp/rootfs/boards"  name="packages/linux_lsp/rootfs/boards" revision="sysdev_kdm_v1.0-201508" />
+   <project path="packages/netcbbs"  name="packages/netcbbs" revision="sysdev_v1.2.0-x" />
+   <project path="packages/ddns"  name="packages/ddns"  />
+   <project path="packages/802dot1x"  name="packages/802dot1x"  />
+   <project path="packages/upnp"  name="packages/upnp" revision="sysdev_v1.4.0-x" />
+   <project path="packages/smoothsend"  name="packages/smoothsend"  />
+   <project path="packages/ftpc"  name="packages/ftpc"  />
+   <project path="packages/kdbox"  name="packages/kdbox"  />
+   <project path="packages/sysdbg"  name="packages/sysdbg"  />
+   <project path="packages/mediactrl"  name="packages/mediactrl"  revision="sysdev_v1.2.5-x" /> 
+   <project path="packages/sac"  name="packages/sac"    />
+   <project path="packages/mbm"  name="packages/mbm"    />
+
+ </manifest>

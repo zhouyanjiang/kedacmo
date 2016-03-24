@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <info usage="月版本repo"/>	
+   <remote name="origin" fetch="ssh://172.16.8.9:29418/sysdev/" />
+   <default revision="master" remote="origin" />
+ 
+   <project path="makerulers" name="makerulers" >
+           <copyfile src="build/core/main.mk" dest="make.mk" />
+   </project>
+ 
+   <project path="packages/drvlib" name="packages/drvlib"   />
+   <project path="packages/linux_lsp/kernel/klsp"  name="packages/linux_lsp/kernel/klsp"   />
+   <project path="packages/linux_lsp/rootfs/busybox" name="packages/linux_lsp/rootfs/busybox"   />
+   <project path="packages/linux_lsp/rootfs/nfs" name="packages/linux_lsp/rootfs/nfs"   />
+   <project path="packages/linux_lsp/boot/u-boot-2010.06" name="packages/linux_lsp/boot/u-boot-2010.06"  revision="master_ti81xx"  />
+   <project path="packages/linux_lsp/kernel/linux-2.6.37"  name="packages/linux_lsp/kernel/linux-2.6.37"  />
+   <project path="sdks/ti/ipncrdk"   name="sdks/ti/ipncrdk"  />
+   <project path="packages/udm" name="packages/udm"   />
+   <project path="packages/gnss" name="packages/gnss"   />
+   <project path="packages/linux_lsp/rootfs/boards"  name="packages/linux_lsp/rootfs/boards"  />
+   <project path="packages/netcbbs"  name="packages/netcbbs"  />
+   <project path="packages/ddns"  name="packages/ddns"  />
+   <project path="packages/802dot1x"  name="packages/802dot1x"  />
+   <project path="packages/ispctrl"    name="packages/ispctrl"   revision="master_v2.0" />
+   <project path="packages/upnp"  name="packages/upnp"  />
+   <project path="packages/smoothsend"  name="packages/smoothsend"  />
+   <project path="packages/ftpc"  name="packages/ftpc"  />
+   <project path="packages/mediactrl"  name="packages/mediactrl"    />
+   <project path="packages/kdbox"  name="packages/kdbox"  />
+   <project path="packages/sysdbg"  name="packages/sysdbg"  />
+   <project path="packages/linux_lsp/ostools" name="packages/linux_lsp/ostools"   />
+   <project path="packages/sac" name="packages/sac"   />
+   <project path="packages/mbm" name="packages/mbm"   />
+ </manifest>
