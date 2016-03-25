@@ -1,0 +1,57 @@
+{% extends "common/base.side.html" %}
+
+{% block title %}
+   选择JOB
+{% endblock %}
+
+{% block head %}
+    <script src="/static/js/jquery.bootstrap-duallistbox.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-duallistbox.css">
+{% endblock %}
+
+{% block rcontent %}
+
+    <form class="form-horizontal" role="form" action={% url "choosejoburl" %} method="POST" >
+    {% csrf_token %}
+      {% for item in form %}
+          <div  class="form-group">
+              <label  class="control-label col-md-1">{{item.label}}</label>
+              <div id={{item.label}} class="col-md-3">
+                  {{item}}
+              </div>
+              <div class="col-md-offset-1 col-md-10">
+                  {{item.errors}}
+              </div>
+          </div>
+      {% endfor %}
+      <div class="form-group">
+          <div class="col-md-offset-1 col-md-10">
+              <button type="submit" class="btn btn-danger btn-sm">提 交</button>
+          <div>
+      </div>
+
+   </form>
+
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $('#id_job_ip').click(function(){
+          var ips=$("#id_job_ip").val();
+          $.get("/jenkins/jenkins/ajax_ip/",{'ips':ips}, function(ret){
+              $('#id_job_view').html(ret[0]);
+              $('#id_job_name').html(ret[1]);
+          })
+      })
+
+      $('#id_job_view').click(function(){
+          var ips=$("#id_job_ip").val();
+          var views=$("#id_job_view").val();
+          $.get("/jenkins/jenkins/ajax_view/",{'ips':ips,'views':views}, function(ret){
+              $('#id_job_name').html(ret);
+          })
+      })
+
+    });
+</script>
+
+{% endblock %}

@@ -2,12 +2,13 @@ from django.db import models
 
 # Create your models here.
 class ServerStatus(models.Model):
-    ip = models.GenericIPAddressField(max_length=255, unique=True,db_index=True)
+    ip = models.GenericIPAddressField(max_length=255)
+    servertype = models.CharField(max_length=255)
     is_active = models.BooleanField(default=False)
-    cpuinfo = models.CharField(max_length=255)
+    cpuinfo = models.CharField(max_length=255,null=True)
     meminfo = models.CharField(max_length=255)
-    diskinfo = models.CharField(max_length=255)
-    boottime = models.CharField(max_length=255)
+    diskinfo = models.CharField(max_length=255,null=True)
+    boottime = models.CharField(max_length=255,null=True)
     ldapstatus = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -19,6 +20,7 @@ class ServerManager(models.Model):
     passwd = models.CharField(max_length=40)
     servertype = models.CharField(max_length=255)
     serveruse = models.CharField(max_length=255)
+    bitwide = models.CharField(max_length=40)
     note = models.CharField(max_length=255)
     #status = models.ForeignKey(ServerStatus,null=True,blank=True)
 

@@ -1,0 +1,30 @@
+{% extends "common/base.side.html" %}
+
+{% block title %}
+    编译结果
+{% endblock %}
+
+{% block rcontent %}
+    <div class="btn-toolbar">
+
+    <table class="table table-hover table-striped table-bordered  table-condensed">
+        <tr>
+            <th>Job</th>
+            <th>IP</th>
+            <th>build_id</th>
+            <th>build_result</th>
+        </tr>
+
+        {% for i in lPage %}
+            <tr style="font-size: 13px;">
+                <td>{{ i.job_name }} </td>
+                <td>{{ i.job_ip }} </td>
+                <td>{{ i.build_id }} </td>
+                <td>{{ i.build_result }} </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    {% include "common/paginator.html" %}
+{% endblock %}

@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'DeptManage',
     'Logs',
     'Apply',
-    'jenkins',
+    'Jenkins',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response,RequestContext
 from website.common.CommonPaginator import SelfPaginator
+from website.common.common import *
 
 from DeptManage.forms import DeptListForm
 from DeptManage.models import DeptManager
@@ -18,6 +19,8 @@ def AddDept(request):
     if request.method == "POST":
         form = DeptListForm(request.POST)
         if form.is_valid():
+            print gen_macro("EMAIL")
+            print gen_macro("AAA")
             form.save()
             records = Operating_Logs(username=request.user,mode=u'新建部门',note=request.POST['name'],time=time.strftime('%Y-%m-%d %H:%M:%S'))
             records.save()

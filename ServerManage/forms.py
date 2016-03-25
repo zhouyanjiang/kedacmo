@@ -7,14 +7,16 @@ from ServerManage.models import ServerManager
 class ServerListForm(forms.ModelForm):
     class Meta:
         model = ServerManager
-        fields = ('ip','logname','passwd','servertype','serveruse')
+        fields = ('ip','logname','passwd','servertype','serveruse','bitwide','note')
         widgets = {
             'ip' : forms.TextInput(attrs={'class':'form-control'}),
             'logname' : forms.TextInput(attrs={'class':'form-control'}),
             'passwd' :  forms.PasswordInput(attrs={'class':'form-control'}),
-            'servertype' : forms.Select(choices=((u'----',u'请选择类型'),(u'Windows',u'Windows'),(u'CentOS',u'CentOS'),(u'Ubuntu',u'Ubuntu'),(u'Redhat',u'Redhat')),attrs={'class':'form-control'}),
-            'serveruse' : forms.Select(choices=((u'----',u'请选择用途'),(u'编译机',u'编译机'),(u'源码机',u'源码机'),(u'版本机',u'版本机'),(u'应用服务器',u'应用服务器')),attrs={'class':'form-control'}),
-            'status' : forms.HiddenInput,
+            'servertype' : forms.Select(choices=((u'----',u'请选择类型'),(u'Windows XP',u'Windows XP'),(u'Windows 7',u'Windows 7'),(u'CentOS 5.6',u'CentOS 5.6'),(u'CentOS 6.6',u'CentOS 6.6'),(u'Ubuntu 14.04',u'Ubuntu 14.04'),(u'Ubuntu 12.04',u'Ubuntu 12.04'),(u'Redhat 4.4',u'Redhat 4.4'),(u'Redhat 5.2 ',u'Redhat 5.2')),attrs={'class':'form-control'}),
+            'serveruse' : forms.Select(choices=((u'----',u'请选择用途'),(u'编译机',u'编译机'),(u'SVN 源码机',u'SVN 源码机'),(u'Git 源码机',u'Git 源码机'),(u'版本机',u'版本机'),(u'应用服务器',u'应用服务器')),attrs={'class':'form-control'}),
+            'bitwide' : forms.RadioSelect(choices=((u'32位',u'32位'),(u'64位',u'64位')),attrs={'class':'list-inline'}),
+            'note' : forms.TextInput(attrs={'class':'form-control'}),
+            #'status' : forms.HiddenInput,
         }
     def __init__(self,*args,**kwargs):
         super(ServerListForm,self).__init__(*args,**kwargs)
@@ -26,8 +28,12 @@ class ServerListForm(forms.ModelForm):
         self.fields['passwd'].required=False
         self.fields['servertype'].label=u'服务器类型'
         self.fields['servertype'].required=False
+        self.fields['bitwide'].label=u'CPU位宽'
+        self.fields['bitwide'].required=False
         self.fields['serveruse'].label=u'服务器用途'
         self.fields['serveruse'].required=False
+        self.fields['note'].label=u'备注'
+        self.fields['note'].required=False
 
 
     #if ip:

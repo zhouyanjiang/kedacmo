@@ -29,13 +29,15 @@
     </div>
 
     <hr/>
-    <table class="table table-hover table-striped  table-bordered table-condensed">
+    <table  class="table table-hover table-striped  table-bordered table-condensed">
         <tr>
             <th>S</th>
             <th>服务器IP</th>
             <th>登录名</th>
             <th>服务器类型</th>
+            <th>CPU位宽</th>
             <th>服务器用途</th>
+            <th>备注</th>
             <th>操作</th>
         </tr>
 
@@ -45,7 +47,9 @@
                 <td>{{ i.ip }} </td>
                 <td>{{ i.logname|default:"----" }} </td>
                 <td>{{ i.servertype }} </td>
+                <td>{{ i.bitwide|default:"----"  }} </td>
                 <td>{{ i.serveruse }} </td>
+                <td>{{ i.note }} </td>
                 <td>
                     <a href={% url "editserverurl" i.id %} onclick="return confirm('确认编辑吗？？')"><span class="glyphicon glyphicon-edit btn-xs"></span></a>
                     <a href={% url "deleteserverurl" i.id %} onclick="return confirm('确认删除吗？？')"><span class="glyphicon glyphicon-trash btn-xs"></span></a>
@@ -54,6 +58,7 @@
         {% endfor %}
 
     </table>
+
 
     {% include "common/paginator.html" %}
 {% endblock %}

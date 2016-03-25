@@ -225,3 +225,10 @@ class JsonResponse(HttpResponse):
             mimetype=mimetype,
             status=status,
             content_type=content_type)
+
+def gen_macro(macro):
+    f = open("/home/keda/workspace/kedacmo/website/system.prop")
+    lines = f.readlines()
+    for one in lines:
+        if one.startswith("%s="%macro):
+            return one.strip().split("=")[1]
