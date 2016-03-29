@@ -15,7 +15,7 @@ class ServerListForm(forms.ModelForm):
             'servertype' : forms.Select(choices=((u'----',u'请选择类型'),(u'Windows XP',u'Windows XP'),(u'Windows 7',u'Windows 7'),(u'CentOS 5.6',u'CentOS 5.6'),(u'CentOS 6.6',u'CentOS 6.6'),(u'Ubuntu 14.04',u'Ubuntu 14.04'),(u'Ubuntu 12.04',u'Ubuntu 12.04'),(u'Redhat 4.4',u'Redhat 4.4'),(u'Redhat 5.2 ',u'Redhat 5.2')),attrs={'class':'form-control'}),
             'serveruse' : forms.Select(choices=((u'----',u'请选择用途'),(u'编译机',u'编译机'),(u'SVN 源码机',u'SVN 源码机'),(u'Git 源码机',u'Git 源码机'),(u'版本机',u'版本机'),(u'应用服务器',u'应用服务器')),attrs={'class':'form-control'}),
             'bitwide' : forms.RadioSelect(choices=((u'32位',u'32位'),(u'64位',u'64位')),attrs={'class':'list-inline'}),
-            'note' : forms.TextInput(attrs={'class':'form-control'}),
+            'note' : forms.Textarea(attrs={'class':'form-control','rows':'3'}),
             #'status' : forms.HiddenInput,
         }
     def __init__(self,*args,**kwargs):

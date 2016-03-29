@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <manifest>
+	<info usage="android月版本repo"/>   
+      	<remote fetch="git@172.16.106.88:" name="origin" />
+         <default revision="master" remote="origin" />
+   	<remote fetch="ssh://172.16.8.9:29418/" name="kedacom" />
+	 
+	  <project path="makerulers" name="sysdev/makerulers" remote="kedacom"  >
+           <copyfile src="build/core/main.mk" dest="make.mk"/>
+          </project>
+	  <project name="android-KdcCommponets/android-ispctrl"  path="packages/android-ispctrl"  remote="origin" />
+          <project name="android-ipcv7/third_party/webrtc-modules-core"  path="packages/webrtc/third_party/webrtc-modules-core"  remote="origin" />
+          <project name="android-ipcv7/third_party/gtest"  path="packages/webrtc/third_party/gtest"  remote="origin" />
+	  <project name="android-ipcv7/third_party/libyuv"  path="packages/webrtc/third_party/libyuv"  remote="origin" />
+	  <project name="android-ipcv7/third_party/libvpx"  path="packages/webrtc/third_party/libvpx"  remote="origin" />
+          <project name="android-ipcv7/third_party/jsoncpp"  path="packages/webrtc/third_party/jsoncpp"  remote="origin" />
+	  <project name="android-ipcv7/third_party/opus"  path="packages/webrtc/third_party/opus"  remote="origin" />
+	  <project name="android-ipcv7/third_party/telnetd"  path="packages/webrtc/third_party/telnetd"  remote="origin" />
+	  <project name="android-ipcv7/webrtc"  path="packages/webrtc"  remote="origin" />
+	  <project name="sysdev/packages/mediactrl"  path="packages/mediactrl"  remote="kedacom"  />
+	  <project name="sysdev/packages/mbm"  path="packages/mbm"  remote="kedacom"  />
+	  <project name="sysdev/packages/sac"  path="packages/sac"  remote="kedacom"  />
+          <project name="sysdev/packages/ftpc"  path="packages/ftpc"  remote="kedacom"  />
+          <project name="sysdev/packages/ddns"  path="packages/ddns"  remote="kedacom" />
+	  <project name="sysdev/packages/upnp"  path="packages/upnp"  remote="kedacom"  />
+	  <project name="sysdev/packages/smoothsend"  path="packages/smoothsend"  remote="kedacom" />
+ 		  
+</manifest>

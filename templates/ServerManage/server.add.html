@@ -27,9 +27,19 @@
       {% for item in form %}
           <div class="form-group">
               <label class="control-label col-md-1">{{item.label}}</label>
+              {% if item.label != 'CPU位宽' %}
               <div class="col-md-3">
                   {{item}}
               </div>
+              {% else %}
+              <div class="col-md-3">
+              <label class="control-label ">
+                {% for radio in form.bitwide %}
+                  {{ radio }}
+                {% endfor %}
+              </label>
+            </div>
+               {% endif %}
               <div class="col-md-offset-1 col-md-10">
                   {{item.errors}}
               </div>

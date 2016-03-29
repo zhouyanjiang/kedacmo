@@ -22,3 +22,6 @@ def Index(request):
 
 def SysRepoInfo(request):
    return render_to_response('sysrepoinfo.html',locals(),RequestContext(request))
+
+def SysBranchInfo(request):
+   return render_to_response('sysbranchinfo.html',locals(),RequestContext(request))

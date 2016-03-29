@@ -1,0 +1,15 @@
+{% extends "common/base.side.html" %}
+{% block title %}
+    系统部分支信息
+{% endblock %}
+
+{% block rcontent %}
+    <div class="btn-toolbar">
+    <table id="table" data-toggle="table" data-search="true">
+        <thead>
+        <tr>
+            <th data-sortable="true" data-field="branch">仓库</th>
+            <th data-sortable="true" data-field="path">分支</th>
+            <th data-sortable="true" data-field="note">负责人以及高级工程师</th>
+        </tr>
+        </thead>

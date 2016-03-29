@@ -3884,6 +3884,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 18px;
   line-height: 20px;
 }
+.navbar-brand-bg{
+  float: left;
+  height: 50px;
+  width:363px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  #background-image: url(logo_cmos.png);
+}
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
